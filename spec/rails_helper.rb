@@ -31,11 +31,12 @@ ActiveRecord::Migrator.migrations_paths = [
   Rails.root.join('db', 'migrate'),
   Federails::Moderation::Engine.root.join('db', 'migrate'),
 ]
+
 # Check for migration status
 begin
-  if ActiveRecord::Base.with_connection {|c| c.migration_context.needs_migration? }
-    # Try to migrate
-    ActiveRecord::Base.with_connection {|c| c.migration_context.migrate }
+  migration_context = ActiveRecord::MigrationContext.new ActiveRecord::Migrator.migrations_paths
+  if migration_context.needs_migration?
+    migration_context.migrate
   end
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
