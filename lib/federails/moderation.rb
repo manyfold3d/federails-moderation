@@ -1,3 +1,4 @@
+require "federails"
 require "federails/moderation/version"
 require "federails/moderation/engine"
 
