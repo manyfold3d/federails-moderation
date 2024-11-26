@@ -20,3 +20,6 @@ gem "database_cleaner-active_record"
 gem "factory_bot_rails"
 
 gem "faker", "~> 3.5"
+
+gem "pundit"
+gem "federails", "~> 0.3"
