@@ -22,4 +22,4 @@ gem "factory_bot_rails"
 gem "faker", "~> 3.5"
 
 gem "pundit"
-gem "federails", "~> 0.3"
+gem "federails", git: "https://gitlab.com/ExperimentsLabs/federails", ref: "main"
