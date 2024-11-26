@@ -1,5 +1,5 @@
 RSpec.describe "Reports" do
-  let(:actor) { create :actor }
+  let(:user) { create :user }
   let(:report_body) {
     <<-EOF
       {
@@ -17,6 +17,6 @@ RSpec.describe "Reports" do
 
   it "should call registered Report handler when a flag is received by Federails" do
     expect(Federails::Moderation::Report).to receive(:handle_flag).once.and_call_original
-    post actor.inbox_url, params: report_body, headers: { content_type: "application/activity" }
+    post user.actor.inbox_url, params: report_body, headers: { content_type: "application/activity" }
   end
 end
