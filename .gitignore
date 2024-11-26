@@ -10,3 +10,4 @@
 /spec/dummy/tmp/a
 Gemfile.lock
 spec/dummy/tmp/local_secret.txt
+rspec_examples.txt
