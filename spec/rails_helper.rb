@@ -29,7 +29,7 @@ Dir[Federails::Moderation::Engine.root.join('spec', 'support', '**', '*.rb')].ea
 # Specify all migration paths
 ActiveRecord::Migrator.migrations_paths = [
   Rails.root.join('db', 'migrate'),
-  Federails::Moderation::Engine.root.join('db', 'migrate'),
+  Federails::Moderation::Engine.root.join('db', 'migrate')
 ]
 
 # Check for migration status
