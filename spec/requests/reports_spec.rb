@@ -1,5 +1,5 @@
 RSpec.describe "Reports" do
-  let(:actor) { Federails::Actor.create }
+  let(:actor) { create :actor }
   let(:report_body) {
     <<-EOF
       {

@@ -18,3 +18,5 @@ gem "rubocop-rails-omakase", require: false
 gem "rspec-rails"
 gem "database_cleaner-active_record"
 gem "factory_bot_rails"
+
+gem "faker", "~> 3.5"
