@@ -9,3 +9,4 @@
 /spec/dummy/storage/
 /spec/dummy/tmp/a
 Gemfile.lock
+spec/dummy/tmp/local_secret.txt
