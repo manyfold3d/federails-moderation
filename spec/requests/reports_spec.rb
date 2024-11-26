@@ -1,5 +1,3 @@
-require "rails_helper"
-
 RSpec.describe "Reports" do
   let(:actor) { Federails::Actor.create }
   let(:report_body) {
