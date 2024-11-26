@@ -24,8 +24,4 @@ Gem::Specification.new do |spec|
   end
   spec.add_dependency "rails", ">= 7.2.2"
   spec.add_dependency "federails", "~> 0.3"
-
-  spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "database_cleaner-active_record"
-  spec.add_development_dependency "factory_bot"
 end
