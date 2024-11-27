@@ -62,10 +62,10 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_27_105043) do
 
   create_table "federails_moderation_reports", force: :cascade do |t|
     t.string "federated_url"
-    t.integer "federails_actor_id", null: false
+    t.integer "federails_actor_id"
     t.string "content"
-    t.string "object_type", null: false
-    t.integer "object_id", null: false
+    t.string "object_type"
+    t.integer "object_id"
     t.datetime "resolved_at"
     t.string "resolution"
     t.datetime "created_at", null: false
