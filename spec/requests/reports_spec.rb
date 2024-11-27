@@ -17,7 +17,9 @@ RSpec.describe "Reports" do
   end
 
   it "should call registered Report handler when a flag is received by Federails" do
-    expect(Federails::Moderation::Report).to receive(:handle_flag).once.and_call_original
+    expect(Federails::Moderation::ReportCreationService).to receive(:call).once { |args|
+      expect(args["content"]).to eq "Test, please ignore"
+    }
     post user.actor.inbox_url, params: report_body, as: :json
   end
 end
