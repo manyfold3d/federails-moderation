@@ -1,5 +1,6 @@
 RSpec.describe "Reports" do
-  let(:object) { create :user }
+  let(:user) { create :user }
+  let(:object) { create :note }
   let(:actor) { create :distant_actor }
   let(:valid_activity) { {
     "@context" => "https://www.w3.org/ns/activitystreams",
@@ -8,12 +9,12 @@ RSpec.describe "Reports" do
     "actor" => actor.federated_url,
     "content" => "I don't like spiders",
     "object" => [
-      object.federails_actor.federated_url
+      "http://localhost:3000/notes/#{object.to_param}"
     ]
   } }
 
   it "should accept Flag activities" do
-    post object.federails_actor.inbox_url, params: valid_activity, as: :json
+    post user.federails_actor.inbox_url, params: valid_activity, as: :json
     expect(response.status).to eq 201
   end
 
@@ -21,6 +22,6 @@ RSpec.describe "Reports" do
     expect(Federails::Moderation::ReportCreationService).to receive(:call).once { |args|
       expect(args["content"]).to eq "I don't like spiders"
     }
-    post object.federails_actor.inbox_url, params: valid_activity, as: :json
+    post user.federails_actor.inbox_url, params: valid_activity, as: :json
   end
 end

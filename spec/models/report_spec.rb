@@ -1,6 +1,6 @@
 RSpec.describe Federails::Moderation::Report do
   let(:actor) { create :distant_actor }
-  let(:object) { create :user }
+  let(:object) { create :note }
   let(:report) { create :report, federails_actor: actor, object: object }
 
   it "is reported by an actor" do
