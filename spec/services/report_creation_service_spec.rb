@@ -26,5 +26,9 @@ RSpec.describe Federails::Moderation::ReportCreationService do
     it "stores activity id in new report" do
       expect(report.federated_url).to eq "https://mastodon.me.uk/d977f377-214b-4efd-8a47-70a37fb7ea20"
     end
+
+    it "associates report with actor" do
+      expect(report.federails_actor).to eq actor
+    end
   end
 end
