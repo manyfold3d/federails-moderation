@@ -5,7 +5,10 @@ module Federails::Moderation
     end
 
     def call
-      Rails.logger.debug @activity.inspect
+      Report.create!(
+        federated_url: @activity["id"],
+        content: @activity["content"]
+      )
     end
   end
 end
