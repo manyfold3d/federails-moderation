@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_27_105043) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_27_153113) do
   create_table "federails_activities", force: :cascade do |t|
     t.string "entity_type", null: false
     t.integer "entity_id", null: false
@@ -72,6 +72,11 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_27_105043) do
     t.datetime "updated_at", null: false
     t.index [ "federails_actor_id" ], name: "index_federails_moderation_reports_on_federails_actor_id"
     t.index [ "object_type", "object_id" ], name: "index_federails_moderation_reports_on_object"
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
