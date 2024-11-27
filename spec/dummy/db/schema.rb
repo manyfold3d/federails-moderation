@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_26_114006) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_27_105043) do
   create_table "federails_activities", force: :cascade do |t|
     t.string "entity_type", null: false
     t.integer "entity_id", null: false
@@ -60,7 +60,27 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_26_114006) do
     t.index [ "uuid" ], name: "index_federails_followings_on_uuid", unique: true
   end
 
+  create_table "federails_moderation_reports", force: :cascade do |t|
+    t.string "federated_url"
+    t.integer "federails_actor_id", null: false
+    t.string "content"
+    t.string "object_type", null: false
+    t.integer "object_id", null: false
+    t.datetime "resolved_at"
+    t.string "resolution"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index [ "federails_actor_id" ], name: "index_federails_moderation_reports_on_federails_actor_id"
+    t.index [ "object_type", "object_id" ], name: "index_federails_moderation_reports_on_object"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "federails_activities", "federails_actors", column: "actor_id"
   add_foreign_key "federails_followings", "federails_actors", column: "actor_id"
   add_foreign_key "federails_followings", "federails_actors", column: "target_actor_id"
+  add_foreign_key "federails_moderation_reports", "federails_actors"
 end
