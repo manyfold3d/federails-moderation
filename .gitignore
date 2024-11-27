@@ -11,3 +11,4 @@
 Gemfile.lock
 spec/dummy/tmp/local_secret.txt
 rspec_examples.txt
+.byebug_history
