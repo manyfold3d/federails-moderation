@@ -12,7 +12,7 @@ RSpec.describe "Reports" do
   } }
 
   it "should accept Flag activities" do
-    post user.actor.inbox_url, params: report_body, as: :json
+    post user.federails_actor.inbox_url, params: report_body, as: :json
     expect(response.status).to eq 201
   end
 
@@ -20,6 +20,6 @@ RSpec.describe "Reports" do
     expect(Federails::Moderation::ReportCreationService).to receive(:call).once { |args|
       expect(args["content"]).to eq "Test, please ignore"
     }
-    post user.actor.inbox_url, params: report_body, as: :json
+    post user.federails_actor.inbox_url, params: report_body, as: :json
   end
 end
