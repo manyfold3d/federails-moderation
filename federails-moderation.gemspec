@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
   end
   spec.add_dependency "rails", ">= 7.2.2"
   spec.add_dependency "federails", "~> 0.3"
+  spec.add_dependency "public_suffix", "~> 6.0"
 end
