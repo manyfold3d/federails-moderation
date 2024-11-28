@@ -1,4 +1,4 @@
-class CreateFederailsModerationReports < ActiveRecord::Migration[8.0]
+class CreateFederailsModerationReports < ActiveRecord::Migration[7.0]
   def change
     create_table :federails_moderation_reports do |t|
       t.string :federated_url

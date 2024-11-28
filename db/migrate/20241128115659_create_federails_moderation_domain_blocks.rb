@@ -1,4 +1,4 @@
-class CreateFederailsModerationDomainBlocks < ActiveRecord::Migration[8.0]
+class CreateFederailsModerationDomainBlocks < ActiveRecord::Migration[7.0]
   def change
     create_table :federails_moderation_domain_blocks do |t|
       t.string "domain", null: false, index: { unique: true }
