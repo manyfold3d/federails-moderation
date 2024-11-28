@@ -20,6 +20,8 @@ Add the gem to your Rails application:
 Then install the database migrations:
 
 ```bash
+> bin/rails federails_moderation:install:migrations
+> bin/rails db:migrate
 ```
 
 ## Usage
