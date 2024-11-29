@@ -1,5 +1,5 @@
 RSpec.describe Federails::Moderation::ReportCreationService do
-  let(:object) { create :note }
+  let(:object) { create(:user).federails_actor }
   let(:actor) { create :distant_actor }
   let(:valid_activity) { {
     "@context" => "https://www.w3.org/ns/activitystreams",
@@ -8,7 +8,8 @@ RSpec.describe Federails::Moderation::ReportCreationService do
     "actor" => actor.federated_url,
     "content" => "I don't like spiders",
     "object" => [
-      "http://localhost:3000/notes/#{object.to_param}"
+      object.federated_url,
+      "https://localhost/unknown/object"
     ]
   } }
 
@@ -29,6 +30,10 @@ RSpec.describe Federails::Moderation::ReportCreationService do
 
     it "associates report with actor" do
       expect(report.federails_actor).to eq actor
+    end
+
+    it "associates report with object" do
+      expect(report.object).to eq object
     end
   end
 

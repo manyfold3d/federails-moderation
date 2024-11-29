@@ -1,6 +1,5 @@
 RSpec.describe "Reports" do
   let(:user) { create :user }
-  let(:object) { create :note }
   let(:actor) { create :distant_actor }
   let(:valid_activity) { {
     "@context" => "https://www.w3.org/ns/activitystreams",
@@ -9,7 +8,7 @@ RSpec.describe "Reports" do
     "actor" => actor.federated_url,
     "content" => "I don't like spiders",
     "object" => [
-      "http://localhost:3000/notes/#{object.to_param}"
+      user.federails_actor.federated_url
     ]
   } }
 
