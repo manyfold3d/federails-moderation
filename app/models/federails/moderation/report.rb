@@ -9,4 +9,13 @@ class Federails::Moderation::Report < ApplicationRecord
   def ignore!
     update!(resolved_at: DateTime.now, resolution: "ignored")
   end
+
+  def reporter_address
+    if federails_actor
+      federails_actor.at_address
+    else
+      URI.parse(federated_url).host
+    end
+  end
+
 end
