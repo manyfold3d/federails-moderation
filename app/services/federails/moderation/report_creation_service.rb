@@ -2,6 +2,7 @@ module Federails::Moderation
   class ReportCreationService < ApplicationService
     def initialize(activity)
       @activity = activity
+      Rails.logger.info "Report recieved: #{@activity.inspect}"
     end
 
     def call
