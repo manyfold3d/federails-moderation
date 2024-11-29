@@ -7,10 +7,19 @@ module Federails::Moderation
 
     def call
       Report.create!(
-        federails_actor: Federails::Actor.find_or_create_by_federation_url(@activity["actor"]),
+        federails_actor: find_reporter,
         federated_url: @activity["id"],
         content: @activity["content"]
       )
+    end
+
+    private
+
+    def find_reporter
+      Federails::Actor.find_or_create_by_federation_url(@activity["actor"])
+    rescue ActiveRecord::RecordInvalid, URI::InvalidURIError
+      # Anonymous reports will try to create invalid actors, so we end up here
+      nil
     end
   end
 end

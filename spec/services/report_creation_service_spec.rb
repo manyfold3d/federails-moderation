@@ -31,4 +31,17 @@ RSpec.describe Federails::Moderation::ReportCreationService do
       expect(report.federails_actor).to eq actor
     end
   end
+
+  context "with anonymous report" do
+    let(:anonymous_activity) { valid_activity.except("actor") }
+    let(:report) { described_class.call(anonymous_activity) }
+
+    it "creates valid report" do
+      expect(report).to be_valid
+    end
+
+    it "does not associate an actor" do
+      expect(report.federails_actor).to be_nil
+    end
+  end
 end
