@@ -18,4 +18,7 @@ class Federails::Moderation::Report < ApplicationRecord
     end
   end
 
+  def local?
+    federails_actor&.local?
+  end
 end
