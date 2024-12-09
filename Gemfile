@@ -22,6 +22,4 @@ gem "factory_bot_rails"
 gem "faker", "~> 3.5"
 
 gem "pundit"
-gem "federails", git: "https://gitlab.com/ExperimentsLabs/federails", ref: "main"
-
 gem "byebug"
