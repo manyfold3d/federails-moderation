@@ -1,5 +1,15 @@
 # Federails::Moderation
 
+
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/manyfold3d/federails-moderation/ci.yml)
+[![Maintainability](https://api.codeclimate.com/v1/badges/19eb4dd4705afea275fa/maintainability)](https://codeclimate.com/github/manyfold3d/federails-moderation/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/19eb4dd4705afea275fa/test_coverage)](https://codeclimate.com/github/manyfold3d/federails-moderation/test_coverage)
+![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/rubygems/federails-moderation)
+
+![GitHub Release](https://img.shields.io/github/v/release/manyfold3d/federails-moderation)
+![Gem Downloads (for latest version)](https://img.shields.io/gem/dtv/federails-moderation)
+![Dependent repos (via libraries.io)](https://img.shields.io/librariesio/dependent-repos/rubygems/federails-moderation)
+
 A gem that provides moderation capabilities for [Federails](https://gitlab.com/experimentslabs/federails). It adds the following features:
 
 * Handle incoming `Flag` activities, normally used for reporting content to moderators
