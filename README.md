@@ -60,6 +60,14 @@ r.ignore!
 
 ```
 
+You can receive a callback in your application when a new report is received, by providing a proc which will be called:
+
+```
+Federails::Moderation.configure do |conf|
+  conf.after_report_created = ->(report) { MyApp::MyReportHandler.call(report) }
+end
+```
+
 ### Domain Blocks
 
 You can block domains that are abusive like so:
