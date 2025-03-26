@@ -5,7 +5,7 @@ module Federails::Moderation
   module Configuration
     # A proc that is called any time new report is created
     # Useful for sending notifications
-    mattr_accessor :on_report_created
+    mattr_accessor :after_report_created
   end
   # rubocop:enable Style/ClassVars
 end

@@ -19,10 +19,10 @@ RSpec.describe Federails::Moderation::ReportCreationService do
 
   it "should execute callback when a new Report is created" do
     callback = double("callback", call: nil)
-    Federails::Moderation.configure { |conf| conf.on_report_created = callback }
+    Federails::Moderation.configure { |conf| conf.after_report_created = callback }
     described_class.call(valid_activity)
     expect(callback).to have_received(:call).once
-    Federails::Moderation.configure { |conf| conf.on_report_created = nil }
+    Federails::Moderation.configure { |conf| conf.after_report_created = nil }
   end
 
   context "when creating a new report" do

@@ -27,6 +27,6 @@ class Federails::Moderation::Report < ApplicationRecord
   private
 
   def execute_create_callback
-    Federails::Moderation::Configuration.on_report_created&.call self
+    Federails::Moderation::Configuration.after_report_created&.call self
   end
 end
