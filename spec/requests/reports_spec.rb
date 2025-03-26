@@ -1,4 +1,4 @@
-RSpec.describe "Reports" do
+RSpec.describe "Reports", type: :request do
   let(:user) { create :user }
   let(:actor) { create :distant_actor }
   let(:valid_activity) { {
@@ -11,6 +11,11 @@ RSpec.describe "Reports" do
       user.federails_actor.federated_url
     ]
   } }
+
+  before do
+    # Ignore dereferencing for this test
+    allow(Fediverse::Request).to receive(:dereference)
+  end
 
   it "should accept Flag activities" do
     post user.federails_actor.inbox_url, params: valid_activity, as: :json
