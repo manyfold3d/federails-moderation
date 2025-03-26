@@ -2,6 +2,8 @@ class Federails::Moderation::Report < ApplicationRecord
   belongs_to :federails_actor, class_name: "Federails::Actor", optional: true
   belongs_to :object, polymorphic: true, optional: true
 
+  after_create :execute_create_callback
+
   def resolve!
     update!(resolved_at: DateTime.now, resolution: "resolved")
   end
@@ -20,5 +22,11 @@ class Federails::Moderation::Report < ApplicationRecord
 
   def local?
     federails_actor&.local?
+  end
+
+  private
+
+  def execute_create_callback
+    Federails::Moderation::Configuration.after_report_created&.call self
   end
 end
