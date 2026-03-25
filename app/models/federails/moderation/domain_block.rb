@@ -4,6 +4,9 @@ module Federails::Moderation
 
     def self.blocked?(query)
       self.exists?(domain: [ query, PublicSuffix.parse(query).domain ])
+    rescue PublicSuffix::Error
+      # Allow things that we don't understand
+      false
     end
   end
 end
