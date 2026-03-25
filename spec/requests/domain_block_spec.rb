@@ -53,5 +53,9 @@ RSpec.describe Federails::Moderation::DomainBlock do
       expect(Fediverse::Notifier).not_to receive(:filtered_post_to_inbox)
       Fediverse::Notifier.post_to_inboxes(activity)
     end
+
+    it "doesn't block delivery to local domains that aren't in the public suffix list" do
+      expect(described_class.blocked?("localhost")).to be false
+    end
   end
 end
