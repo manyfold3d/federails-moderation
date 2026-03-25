@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_11_27_153113) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_25_133324) do
   create_table "federails_activities", force: :cascade do |t|
-    t.string "entity_type", null: false
-    t.integer "entity_id", null: false
     t.string "action", null: false
     t.integer "actor_id", null: false
     t.datetime "created_at", null: false
+    t.integer "entity_id", null: false
+    t.string "entity_type", null: false
     t.datetime "updated_at", null: false
     t.string "uuid"
     t.index [ "actor_id" ], name: "index_federails_activities_on_actor_id"
@@ -25,22 +25,26 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_27_153113) do
   end
 
   create_table "federails_actors", force: :cascade do |t|
-    t.string "name"
-    t.string "federated_url"
-    t.string "username"
-    t.string "server"
-    t.string "inbox_url"
-    t.string "outbox_url"
-    t.string "followers_url"
-    t.string "followings_url"
-    t.string "profile_url"
+    t.string "actor_type"
+    t.datetime "created_at", null: false
     t.integer "entity_id"
     t.string "entity_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "uuid"
-    t.text "public_key"
+    t.json "extensions"
+    t.string "federated_url"
+    t.string "followers_url"
+    t.string "followings_url"
+    t.string "inbox_url"
+    t.boolean "local", default: false, null: false
+    t.string "name"
+    t.string "outbox_url"
     t.text "private_key"
+    t.string "profile_url"
+    t.text "public_key"
+    t.string "server"
+    t.datetime "tombstoned_at"
+    t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "uuid"
     t.index [ "entity_type", "entity_id" ], name: "index_federails_actors_on_entity", unique: true
     t.index [ "federated_url" ], name: "index_federails_actors_on_federated_url", unique: true
     t.index [ "uuid" ], name: "index_federails_actors_on_uuid", unique: true
@@ -48,10 +52,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_27_153113) do
 
   create_table "federails_followings", force: :cascade do |t|
     t.integer "actor_id", null: false
-    t.integer "target_actor_id", null: false
-    t.integer "status", default: 0
-    t.string "federated_url"
     t.datetime "created_at", null: false
+    t.string "federated_url"
+    t.integer "status", default: 0
+    t.integer "target_actor_id", null: false
     t.datetime "updated_at", null: false
     t.string "uuid"
     t.index [ "actor_id", "target_actor_id" ], name: "index_federails_followings_on_actor_id_and_target_actor_id", unique: true
@@ -60,15 +64,22 @@ ActiveRecord::Schema[7.0].define(version: 2024_11_27_153113) do
     t.index [ "uuid" ], name: "index_federails_followings_on_uuid", unique: true
   end
 
-  create_table "federails_moderation_reports", force: :cascade do |t|
-    t.string "federated_url"
-    t.integer "federails_actor_id"
-    t.string "content"
-    t.string "object_type"
-    t.integer "object_id"
-    t.datetime "resolved_at"
-    t.string "resolution"
+  create_table "federails_moderation_domain_blocks", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.string "domain", null: false
+    t.datetime "updated_at", null: false
+    t.index [ "domain" ], name: "index_federails_moderation_domain_blocks_on_domain", unique: true
+  end
+
+  create_table "federails_moderation_reports", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.integer "federails_actor_id"
+    t.string "federated_url"
+    t.integer "object_id"
+    t.string "object_type"
+    t.string "resolution"
+    t.datetime "resolved_at"
     t.datetime "updated_at", null: false
     t.index [ "federails_actor_id" ], name: "index_federails_moderation_reports_on_federails_actor_id"
     t.index [ "object_type", "object_id" ], name: "index_federails_moderation_reports_on_object"
