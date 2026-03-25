@@ -23,3 +23,5 @@ gem "faker", "~> 3.5"
 
 gem "pundit"
 gem "byebug"
+
+gem "federails", git: "https://gitlab.com/experimentslabs/federails.git", branch: "main"
