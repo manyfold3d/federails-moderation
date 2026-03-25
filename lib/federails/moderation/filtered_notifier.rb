@@ -4,8 +4,8 @@ module Federails::Moderation
 
     included do
       class <<self
-        def filter_post_to_inbox(to:, message:, from: nil)
-          filtered_post_to_inbox(to: to, message: message, from: from) unless DomainBlock.blocked?(to.server)
+        def filter_post_to_inbox(inbox_url:, message:, from: nil)
+          filtered_post_to_inbox(inbox_url: inbox_url, message: message, from: from) unless DomainBlock.blocked?(URI.parse(inbox_url).hostname)
         end
 
         alias_method :filtered_post_to_inbox, :post_to_inbox

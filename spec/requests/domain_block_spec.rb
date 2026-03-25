@@ -32,11 +32,11 @@ RSpec.describe Federails::Moderation::DomainBlock do
   end
 
   context "when delivering" do
-    FakeActivity = Struct.new :id, :actor, :recipients, :action, :entity, keyword_init: true
+    FakeActivity = Struct.new :id, :actor, :action, :entity, :to, :cc, keyword_init: true
 
     let(:local_actor) { FactoryBot.create(:user).federails_actor }
     let(:distant_target_actor) { FactoryBot.create :distant_actor }
-    let(:activity) { FakeActivity.new(actor: local_actor, recipients: [ distant_target_actor ]) }
+    let(:activity) { FakeActivity.new(actor: local_actor, to: [ distant_target_actor.federated_url ]) }
 
     before do
       allow(Fediverse::Notifier).to receive(:payload).and_return("message")
@@ -44,7 +44,7 @@ RSpec.describe Federails::Moderation::DomainBlock do
 
     it 'allows delivery to non-blocked domains' do
       expect(Fediverse::Notifier).to receive(:filtered_post_to_inbox).
-        with(to: distant_target_actor, message: "message", from: local_actor).once
+        with(inbox_url: distant_target_actor.inbox_url, message: "message", from: local_actor).once
       Fediverse::Notifier.post_to_inboxes(activity)
     end
 
@@ -52,6 +52,10 @@ RSpec.describe Federails::Moderation::DomainBlock do
       described_class.create(domain: distant_target_actor.server)
       expect(Fediverse::Notifier).not_to receive(:filtered_post_to_inbox)
       Fediverse::Notifier.post_to_inboxes(activity)
+    end
+
+    it "doesn't block delivery to local domains that aren't in the public suffix list" do
+      expect(described_class.blocked?("localhost")).to be false
     end
   end
 end

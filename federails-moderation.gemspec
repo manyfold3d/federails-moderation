@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
     Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   end
   spec.add_dependency "rails", ">= 7.2.2"
-  spec.add_dependency "federails", "~> 0.4"
+  spec.add_dependency "federails", "~> 0.8"
   spec.add_dependency "public_suffix", ">= 6", "< 8"
 
   spec.add_development_dependency "simplecov", "~> 0.22"
