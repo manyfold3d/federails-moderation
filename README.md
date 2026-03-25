@@ -15,7 +15,7 @@ A gem that provides moderation capabilities for [Federails](https://gitlab.com/e
 
 ## Requirements
 
-* [Federails](https://gitlab.com/experimentslabs/federails) >= 0.4
+* [Federails](https://gitlab.com/experimentslabs/federails) >= 0.8
 * Ruby >= 3.0
 
 ## Installation
