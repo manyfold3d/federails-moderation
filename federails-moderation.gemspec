@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "federails", "~> 0.8"
   spec.add_dependency "public_suffix", ">= 6", "< 8"
 
-  spec.add_development_dependency "simplecov", "~> 0.22"
+  spec.add_development_dependency "simplecov", "~> 1.0"
 end
