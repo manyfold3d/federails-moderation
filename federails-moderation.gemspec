@@ -7,9 +7,10 @@ Gem::Specification.new do |spec|
   spec.authors     = [ "James Smith" ]
   spec.email       = [ "james@floppy.org.uk" ]
   spec.homepage    = "https://github.com/manyfold3d/federails-moderation"
-  spec.summary     = "Moderation additions for Federails."
-  spec.description = "Moderation additions for Federails; reporting, limit/suspend, server blocking, etc"
+  spec.summary     = "[DEPRECATED] Moderation additions for Federails."
+  spec.description = "[DEPRECATED] renamed, use fedipub-moderation instead"
   spec.license     = "MIT"
+  spec.post_install_message = "federails and federails-moderation have been renamed; switch to fedipub and fedipub-moderation instead for future updates"
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/manyfold3d/federails-moderation"
